@@ -1,34 +1,36 @@
 package com.wanlab.authserver.entity;
 
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
-
 @Getter
 @Setter
 @NoArgsConstructor
 @Entity
-@Table(name = "users")
-public class User {
+@Table(name = "roles")
+public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Long id;
     @Column
-    private String username;
-    @Column
-    private String password;
-    @Column
-    private String isAdmin;
-    @OneToMany(mappedBy = "user")
+    private String name;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    private List<Role> roles;
+    private User user;
 
 
+    public void setId(Long id) {
+        this.id = id;
+    }
 
+    public Long getId() {
+        return id;
+    }
 }
+
