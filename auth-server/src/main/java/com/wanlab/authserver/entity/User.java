@@ -23,8 +23,6 @@ public class User {
     private String username;
     @Column
     private String password;
-    @Column
-    private String isAdmin;
     @OneToMany(mappedBy = "user")
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private List<Role> roles;
