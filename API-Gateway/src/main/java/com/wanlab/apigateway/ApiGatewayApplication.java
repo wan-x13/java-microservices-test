@@ -20,7 +20,7 @@ public class ApiGatewayApplication {
     public RouteLocator routeLocator(RouteLocatorBuilder builder) {
         return builder.routes()
                 .route("auth-service", r -> r
-                        .path("/api/v1/**")
+                        .path("/api/v1/auth/**")
                         .uri("http://localhost:9080"))
                 .build();
     }
