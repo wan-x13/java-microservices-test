@@ -5,6 +5,8 @@ import com.wanlab.microapi1.dto.ArticleDto;
 import com.wanlab.microapi1.entity.Articles;
 import com.wanlab.microapi1.services.ArticlesService;
 import org.modelmapper.ModelMapper;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,10 +22,12 @@ public class ArticleController {
         this.modelMapper = new ModelMapper();
     }
 
-    @PostMapping
-    public Articles save( @RequestBody ArticleDto articleDto) {
+    @PostMapping("/add")
+    public ResponseEntity<Articles> save(@RequestBody ArticleDto articleDto) {
         Articles articles = modelMapper.map(articleDto, Articles.class);
-        return articlesService.save(articles);
+        System.out.println(articleDto);
+         var result = articlesService.save(articles);
+        return new ResponseEntity<>(result, HttpStatus.CREATED);
     }
     @GetMapping
     public List<Articles> findAll() {
@@ -37,9 +41,11 @@ public class ArticleController {
     public void deleteById(@PathVariable String id) {
         articlesService.deleteById(Long.valueOf(id));
     }
-    @PutMapping
-    public Articles update(@RequestBody  ArticleDto articleDto ) {
+    @PutMapping("/update")
+    public ResponseEntity<Articles> update(@RequestBody  ArticleDto articleDto ) {
         Articles articles = modelMapper.map(articleDto, Articles.class);
-        return articlesService.update(articles);
+        var result = articlesService.update(articles);
+        return new  ResponseEntity<>(result, HttpStatus.CREATED);
+
     }
 }

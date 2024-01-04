@@ -20,4 +20,6 @@ public class ArticleDto {
     private String body;
     @NotNull
     private LocalDate publishedAt;
+    @NotNull
+    private  int authorId ;
 }

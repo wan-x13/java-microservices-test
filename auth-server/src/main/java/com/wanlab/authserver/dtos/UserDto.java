@@ -19,4 +19,7 @@ public class UserDto {
     @Pattern(regexp = ".*\\d.*", message = "Password must contain at least one digit")
     @Pattern(regexp = ".*[!@#$%^&*()].*", message = "Password must contain at least one special character")
     private String password;
+    @Pattern(regexp = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$", message = "Invalid email address")
+    @NotNull
+    private String email;
 }

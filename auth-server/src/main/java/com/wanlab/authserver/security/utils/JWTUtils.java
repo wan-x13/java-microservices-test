@@ -14,7 +14,7 @@ import java.util.Date;
 
 @Component
 public class JWTUtils {
-    private String jwtSecret= "WangDaviq=/+1w951990KingMakutaBon23784bTrYvnbfq";
+    private String jwtSecret= "BPkL5pZWxYAAGGXospYPWwDuCGgeKRA9yDEcWk0bioSt";
     private int jwtExpirationMs = 86400000;
 
     public String generateJwtToken(Authentication authentication) {

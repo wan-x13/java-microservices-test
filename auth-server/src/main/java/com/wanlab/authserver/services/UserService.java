@@ -2,6 +2,7 @@ package com.wanlab.authserver.services;
 
 
 import com.wanlab.authserver.dtos.LoginDto;
+import com.wanlab.authserver.dtos.LoginRequest;
 import com.wanlab.authserver.dtos.UserDto;
 import com.wanlab.authserver.entity.Role;
 import com.wanlab.authserver.entity.User;
@@ -9,6 +10,8 @@ import com.wanlab.authserver.exceptions.ConflictException;
 import com.wanlab.authserver.repository.RoleRepository;
 import com.wanlab.authserver.repository.UserRepository;
 import com.wanlab.authserver.security.utils.JWTUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -24,7 +27,7 @@ public class UserService {
     private final RoleRepository roleRepository;
     private final AuthenticationManager authenticationManager;
     private final JWTUtils jwtUtils;
-
+    @Autowired
     public UserService(UserRepository userRepository, RoleRepository roleRepository, AuthenticationManager authenticationManager, JWTUtils jwtUtils) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
@@ -48,7 +51,7 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public LoginDto login(UserDto userDto) {
+    public LoginDto login(LoginRequest userDto) {
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         userDto.getUsername(),

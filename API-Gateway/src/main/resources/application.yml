@@ -18,11 +18,14 @@ spring:
           uri: localhost:9080
           predicates:
             - Path=/api/v1/auth/**
+        - id: article-service
+          uri: localhost:9020
+          predicates:
+            - Path=/api/v1/articles/**
 
 
 eureka:
   client:
     service-url:
       defaultZone: http://localhost:9090/eureka/
-
 
