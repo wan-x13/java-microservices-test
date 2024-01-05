@@ -14,7 +14,7 @@ import java.util.Date;
 
 @Component
 public class JWTUtils {
-    private String jwtSecret= "BPkL5pZWxYAAGGXospYPWwDuCGgeKRA9yDEcWk0bioSt";
+    private String jwtSecret= "BPkL5XospYPzjO2Zp8n5PjJ1005WnagJ8H0Uwq6wUKinshaa1234895";
     private int jwtExpirationMs = 86400000;
 
     public String generateJwtToken(Authentication authentication) {

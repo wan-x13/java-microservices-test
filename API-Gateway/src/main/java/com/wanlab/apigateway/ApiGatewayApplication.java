@@ -29,7 +29,7 @@ public class ApiGatewayApplication {
                 .route("auth-service", r -> r
                         .path("/api/v1/auth/**")
                         .uri("http://localhost:9080"))
-                .route("article-service", r->r.path("api/v1/articles/**")
+                .route("article-service", r->r.path("/api/v1/articles/**")
                         .filters(f->f.filter(filter))
                         .uri("http://localhost:9020"))
                 .build();

@@ -8,10 +8,12 @@ import com.wanlab.authserver.dtos.LoginRequest;
 import com.wanlab.authserver.dtos.UserDto;
 import com.wanlab.authserver.entity.User;
 import com.wanlab.authserver.services.UserService;
+import jakarta.validation.Valid;
 import jakarta.ws.rs.BadRequestException;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,7 +32,7 @@ public class UserController {
     }
 
     @PostMapping("/user")
-    public ResponseEntity<?> createUser(@RequestBody UserDto userDto) throws JsonProcessingException {
+    public ResponseEntity<?> createUser( @RequestBody UserDto userDto) throws JsonProcessingException {
         if(userDto.getUsername() == null || userDto.getPassword() == null ){
             throw new BadRequestException();
         }
@@ -47,7 +49,7 @@ public class UserController {
         return new ResponseEntity<>(user, HttpStatus.CREATED);
     }
     @PostMapping("/login")
-    public ResponseEntity<?> loginUser(@RequestBody LoginRequest userDto) {
+    public ResponseEntity<?> loginUser(@Valid @RequestBody LoginRequest userDto) {
         if(userDto.getUsername() == null || userDto.getPassword() == null ){
             throw new BadRequestException();
         }
